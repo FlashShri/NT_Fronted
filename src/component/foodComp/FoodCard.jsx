@@ -6,9 +6,9 @@ import {
   MDBCardText,
   MDBBtn
 } from 'mdb-react-ui-kit';
-import { fetchfood } from '../services/fetchfoodservices';
+import { fetchfood } from '../../services/fetchfoodservices';
 
-export default function FoodCard() {
+export  function FoodCard() {
 
 
 

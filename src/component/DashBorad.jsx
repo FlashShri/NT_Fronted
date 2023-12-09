@@ -1,15 +1,26 @@
 import { useEffect, useState } from "react";
-import FoodCard from "./FoodCard";
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+
 import { fetchfood, handleDeleteFoodItem } from "../services/fetchfoodservices";
 // import Container from "react-bootstrap/esm/Container";
-import { Button, Card, Container } from 'react-bootstrap';
-import Addfood from "./Addfood";
+import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
 
-export  function DashBorad(){
+
+import Footer from './Footer';
+
+
+
+import FoodList from "./foodComp/FoodList";
+
+import Addfood from "./foodComp/Addfood";
+
+import CalculateNutrients from './foodComp/CalculateNutrients';
+
+export  function DashBorad()
+{
 
 
   const [ foodlist , setFoodlist ] = useState([]);
+  const [mealItems, setMealItems] = useState([]);
 
    async function populatefoodlist(){
     try {
@@ -27,71 +38,107 @@ export  function DashBorad(){
   )
 
 
+
+
+  const onAdd = (meal) => {
+    //get a meal and add to mealItems
+    const exists = mealItems.find((x) => x.id === meal.id)
+
+    if (exists) {
+      //increase it by 1 qty
+      const newMealItems = mealItems.map(
+        (x) => (x.id === meal.id ? { ...exists, qty: exists.qty + 1 } : x) //if meal in calc is == to meal id else don't change qty
+      )
+      setMealItems(newMealItems)
+      localStorage.setItem("mealItems", JSON.stringify(newMealItems))
+      // console.log(mealItems);
+    } else {
+      const newMealItems = [...mealItems, { ...meal, qty: 1 }]
+      setMealItems(newMealItems)
+      localStorage.setItem("mealItems", JSON.stringify(newMealItems))
+    }
+  }
+
+  // Remove an item from mealItems using minus meal btn inside right column calculate nutrients tab
+  const onRemove = (meal) => {
+    const exists = mealItems.find((x) => x.id === meal.id)
+
+    if (exists.qty === 1) {
+      const newMealItems = mealItems.filter((x) => x.id !== meal.id)
+      setMealItems(newMealItems)
+      localStorage.setItem("mealItems", JSON.stringify(newMealItems))
+    } else {
+      const newMealItems = mealItems.map((x) =>
+        x.id === meal.id ? { ...exists, qty: exists.qty - 1 } : x
+      )
+      setMealItems(newMealItems)
+      localStorage.setItem("mealItems", JSON.stringify(newMealItems))
+    }
+  }
+
+  useEffect(() => {
+    setMealItems(
+      localStorage.getItem("mealItems")
+        ? JSON.parse(localStorage.getItem("mealItems"))
+        : []
+    )
+  }, [])
+
     return(
       <Container>
 
-        <Addfood></Addfood>
-      {
-      foodlist.map( (f)=>{
-              return(
-    //    <Card style={{ width: '18rem' }}>
-      
-    //   <Card.Body>
-    //     <Card.Title>{f.name}</Card.Title>
-    //     <Card.Text>
-    //       Some quick example text to build on the card title and make up the
-    //       bulk of the card's content.
-    //     </Card.Text>
-    //     <Button variant="primary">Go somewhere</Button>
-    //   </Card.Body>
-    // </Card>
+        <Row>
+          <Col xs={12} md={8} lg={6}> 
+           
+            <Addfood></Addfood>
+          </Col>
+           <Col xs={12} md={8} lg={6}> 
+          
+            <Addfood></Addfood>
+          </Col>
 
+        </Row>
 
+        <Row className="mt-4">
 
-                <div className="food-card">
-            <div className="food-name">
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <h4 ><strong>{f.name}</strong></h4>
-                    {/* <MdDeleteForever
-                        onClick={() => handleDeleteFoodItem(food.id)}
-                        className="delete-icon"
-                        size="1.3em"
-                        color="rgb(249, 152, 152)"
-                    /> */}
-
-
-                    <Button variant="primary"   onClick={() => handleDeleteFoodItem(f.name)}>Delete</Button>
-                </div>
-                <p><small>Per <b>{f.serving}g </b>serving </small></p>
+          <Col xs={12} md={8} lg={6}>
+          <h3>
+        Your Food Items <Badge bg="secondary">add them to list</Badge>
+      </h3>
+         <div className="row">
+          <div className="col-left">
+            <div className="wrapper-card-food-list">
+             
+              <FoodList
+                food_data={foodlist}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                mealItems={mealItems}
+              />
             </div>
+          </div>
+          </div>
+             
+          </Col>
 
-            {/* <img className="small" src={food.image} alt={food.name}></img> */}
-            <div className="food-nutrients">
-                <p><small>Protein</small> <b>{f.protein}g</b>  </p>
-                <p><small>Calories</small>{f.calories}</p>
-                <p><small>Sugar</small>{f.sugar}</p>
+          <Col  xs={12} md={8} lg={6}>
+
+            <div className="col-right">
+            <div className="wrapper-card-calculate-rightCol">
+              <CalculateNutrients
+                onAdd={onAdd}
+                onRemove={onRemove}
+                mealItems={mealItems}
+                countMealItems={mealItems.length}
+              
+              />
             </div>
+          </div>
 
-            {/* <div>
-                {item ? (
-                    <div>
-                        <button onClick={() => onRemove(item)} className="food-remove">-</button>
-                        &nbsp;&nbsp;
-                        <span>{item.qty}</span>
-                        &nbsp;&nbsp;
-                        <button onClick={() => onAdd(item)} className="food-add">+</button>
-                    </div>
-                ) : (
-                    <button onClick={() => onAdd(food)} className="add-btn">Add meal</button>
-                )}
-            </div> */}
-        </div>
-              )
-            })
-          }
-       
-     
 
+          </Col>
+        </Row>
+           <Footer></Footer>
       </Container>
 
 

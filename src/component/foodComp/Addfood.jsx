@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
-import { addfoodtoDB } from '../services/fetchfoodservices';
+import { addfoodtoDB } from '../../services/fetchfoodservices';
 
 const Addfood = () => {
 //   const [itemmname, setItemname] = useState('');
