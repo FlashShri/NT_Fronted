@@ -12,7 +12,7 @@ const Addfood = () => {
 //   const [category , setCategory] = useState('');
 
 const [ formData , setFormData] = useState({
- id: nanoid(),
+
   name: "",
   serving: "",
   protein: "",
@@ -30,7 +30,7 @@ const [ formData , setFormData] = useState({
 
     try {
         const res = await addfoodtoDB( formData);
-         console.log( "submitted from user" );
+         
         setFormData({
  
   name: "",
@@ -40,6 +40,7 @@ const [ formData , setFormData] = useState({
   sugar: "",
   category: ""
         })
+        console.log( "submitted from user" );
 
        
     } catch (error) {

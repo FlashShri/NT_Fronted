@@ -14,6 +14,7 @@ import FoodList from "./foodComp/FoodList";
 import Addfood from "./foodComp/Addfood";
 
 import CalculateNutrients from './foodComp/CalculateNutrients';
+import { Slider } from "./foodComp/Slider";
 
 export  function DashBorad()
 {
@@ -33,7 +34,11 @@ export  function DashBorad()
   }
 
   useEffect( ()=>{
-       populatefoodlist()
+
+    setTimeout(()=>{
+       populatefoodlist();
+    }, 500)
+      
   }, []
   )
 
@@ -92,9 +97,9 @@ export  function DashBorad()
            
             <Addfood></Addfood>
           </Col>
-           <Col xs={12} md={8} lg={6}> 
+           <Col xs={12} md={8} lg={6} className="mt-6"> 
           
-            <Addfood></Addfood>
+            <Slider></Slider>
           </Col>
 
         </Row>

@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, InputGroup, Alert } from 'react-boot
 import { Link, useNavigate } from 'react-router-dom';
 import { NavigationBar } from './Navigationbar';
 import { login } from '../services/AdminService';
+import { loginUser } from '../services/UserService';
 
 export function Login(){
 
@@ -21,7 +22,7 @@ const navigate =   useNavigate();
       e.preventDefault();
       try {
       
-       const result =  await login(formdata);
+       const result =  await loginUser(formdata);
        console.log( result );
        // set token into browser
        localStorage.setItem( "token" , result.token );

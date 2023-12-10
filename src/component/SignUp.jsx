@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser, singupUser } from "../services/UserService";
 
 export function Signup(){
 
-      const [username, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setphone] = useState("");
-  const [work, setwork] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [cpassword, setConfirmPassword] = useState("");
 
-  const submitForm = () => {
-    if (validateForm() && validateEmail()) {
-      console.log("Form submitted:", username, email, phone, work, password);
+const navigate =   useNavigate();
+
+  const submitForm = async () => {
+    try {
+      const userData = {
+      name,
+      email,
+      phone,
+      password,
+      cpassword,
+    };
+      const result = await singupUser( userData );
+      console.log( result );
+      localStorage.setItem( "token" , result.token );
+
+      navigate('/dashboard');
+      
+    } catch (error) {
     }
   };
+
+      // if (validateForm() && validateEmail()) {
+    //   console.log("Form submitted:", username, email, phone, work, password);
+    // }
 
   const validateForm = () => {
     if (password.length < 6) {
@@ -23,7 +42,7 @@ export function Signup(){
       return false;
     }
 
-    if (password !== confirmPassword) {
+    if (password !== cpassword) {
       alert("Passwords do not match.");
       return false;
     }
@@ -62,7 +81,7 @@ export function Signup(){
               <Form.Control
                 type="text"
                 placeholder="Username"
-                value={username}
+                value={name}
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 className="rounded-start"
@@ -133,7 +152,7 @@ export function Signup(){
               <Form.Control
                 type="password"
                 placeholder="Confirm Password"
-                value={confirmPassword}
+                value={cpassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 className="rounded-start"
