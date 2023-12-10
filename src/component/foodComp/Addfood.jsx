@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import { addfoodtoDB } from '../../services/fetchfoodservices';
+import { nanoid } from 'nanoid' ;
 
 const Addfood = () => {
 //   const [itemmname, setItemname] = useState('');
@@ -11,7 +12,7 @@ const Addfood = () => {
 //   const [category , setCategory] = useState('');
 
 const [ formData , setFormData] = useState({
- 
+ id: nanoid(),
   name: "",
   serving: "",
   protein: "",

@@ -12,15 +12,13 @@ function App() {
     <BrowserRouter>
       <NavigationBar></NavigationBar>
       <Routes>
-        <Route path="/" element={<DashBorad></DashBorad>}></Route>
+        <Route path="/" element={<Login></Login>}></Route>
+        <Route path="/dashboard" element={<DashBorad></DashBorad>}></Route>
 
-        <Route path="/login" element={<Login></Login>}></Route>
-        
         <Route path="/signup" element={<Signup></Signup>}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/contact' element={<Contact />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
-     
     </BrowserRouter>
   );
 }

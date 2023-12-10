@@ -1,19 +1,45 @@
 
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col, Form, Button, InputGroup, Alert } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { NavigationBar } from './Navigationbar';
+import { login } from '../services/AdminService';
 
 export function Login(){
 
-      const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+const navigate =   useNavigate();
+
+    const [ formdata , setFormData ] = useState({email : "", password:""})
   
-    const submitForm = () => {
-      // Your form submission logic here
-    };
+    const [loginError , setLoginError] = useState( false );
+
+    const handleChange = ( e )=>{
+      setFormData({ ...formdata , [e.target.name]: e.target.value})
+      console.log("setting state");
+    }
+    const handleSubmit = async (e)=>{
+      e.preventDefault();
+      try {
+      
+       const result =  await login(formdata);
+       console.log( result );
+       // set token into browser
+       localStorage.setItem( "token" , result.token );
+
+       // now redirect user to dashboard
+       navigate('/dashboard');
+      } catch (error) {
+        console.log(error);
+        setLoginError( true );
+      }
+    }
   
+   
 
     return(
+      <>
+       <NavigationBar></NavigationBar>
+     
             <Container className="mt-5">
       <Row className="justify-content-center">
         <Col md={6}>
@@ -23,10 +49,11 @@ export function Login(){
             <Form.Group controlId="formUsername" className="mb-3">
               <InputGroup>
                 <Form.Control
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  type="email"
+                  name="email"
+                  placeholder="enter email"
+                  
+                  onChange={handleChange}
                   required
                   className="rounded-start"
                 />
@@ -40,9 +67,10 @@ export function Login(){
               <InputGroup>
                 <Form.Control
                   type="password"
+                  name="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  
+                  onChange={handleChange}
                   required
                   className="rounded-start"
                 />
@@ -61,7 +89,7 @@ export function Login(){
               </Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="button" className="btn w-100" onClick={submitForm}>
+            <Button variant="primary" type="button" className="btn w-100" onClick={handleSubmit}>
               Login
             </Button>
 
@@ -71,8 +99,10 @@ export function Login(){
               </p>
             </Form.Text>
           </Form>
+          {loginError ? <Alert variant='danger' className='mt-4'>Invalid email or password</Alert>: null}
         </Col>
       </Row>
     </Container>
+     </>
     );
 }

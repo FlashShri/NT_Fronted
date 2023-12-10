@@ -159,7 +159,7 @@ export function Signup(){
               <p className="mb-0">
                 Already have an account?{" "}
                 < Link
-                  to='/login'
+                  to='/'
                   className="text-decoration-none"
                 >
                   Login
