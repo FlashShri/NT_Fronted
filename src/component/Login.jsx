@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { NavigationBar } from './Navigationbar';
 import { login } from '../services/AdminService';
 import { loginUser } from '../services/UserService';
+import { NavForLogin } from './navforlogin';
 
 export function Login(){
 
@@ -39,13 +40,13 @@ const navigate =   useNavigate();
 
     return(
       <>
-       <NavigationBar></NavigationBar>
+      <NavForLogin></NavForLogin>
      
             <Container className="mt-5">
       <Row className="justify-content-center">
         <Col md={6}>
           <Form className="p-4 shadow-lg bg-white rounded">
-            <h1 className="mb-4 text-center">Login</h1>
+            <h1 className="mb-4 text-center">User Login</h1>
 
             <Form.Group controlId="formUsername" className="mb-3">
               <InputGroup>

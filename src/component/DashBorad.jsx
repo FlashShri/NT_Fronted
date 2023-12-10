@@ -15,6 +15,7 @@ import Addfood from "./foodComp/Addfood";
 
 import CalculateNutrients from './foodComp/CalculateNutrients';
 import { Slider } from "./foodComp/Slider";
+import { NavigationBar } from "./Navigationbar";
 
 export  function DashBorad()
 {
@@ -25,7 +26,7 @@ export  function DashBorad()
 
    async function populatefoodlist(){
     try {
-      const list = await fetchfood();
+      const list = await fetchfood(); // api call  
       console.log( list.foods );
       setFoodlist( list.foods ) ;
     } catch (error) {
@@ -89,65 +90,51 @@ export  function DashBorad()
     )
   }, [])
 
-    return(
+    return (
       <Container>
-
+        <NavigationBar></NavigationBar>
         <Row>
-          <Col xs={12} md={8} lg={6}> 
-           
+          <Col xs={12} md={8} lg={6}>
             <Addfood></Addfood>
           </Col>
-           <Col xs={12} md={8} lg={6} className="mt-6"> 
-          
+          <Col xs={12} md={8} lg={6} className="mt-6">
             <Slider></Slider>
           </Col>
-
         </Row>
-
         <Row className="mt-4">
+          <Col xs={12} md={8} lg={6}>
+            <h3>
+              Your Food Items <Badge bg="secondary">add them to list</Badge>
+            </h3>
+            <div className="row">
+              <div className="col-left">
+                <div className="wrapper-card-food-list">
+                  <FoodList
+                    food_data={foodlist}
+                    onAdd={onAdd}
+                    onRemove={onRemove}
+                    mealItems={mealItems} // local strg
+                  />
+                </div>
+              </div>
+            </div>
+          </Col>
 
           <Col xs={12} md={8} lg={6}>
-          <h3>
-        Your Food Items <Badge bg="secondary">add them to list</Badge>
-      </h3>
-         <div className="row">
-          <div className="col-left">
-            <div className="wrapper-card-food-list">
-             
-              <FoodList
-                food_data={foodlist}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                mealItems={mealItems}
-              />
-            </div>
-          </div>
-          </div>
-             
-          </Col>
-
-          <Col  xs={12} md={8} lg={6}>
-
             <div className="col-right">
-            <div className="wrapper-card-calculate-rightCol">
-              <CalculateNutrients
-                onAdd={onAdd}
-                onRemove={onRemove}
-                mealItems={mealItems}
-                countMealItems={mealItems.length}
-              
-              />
+              <div className="wrapper-card-calculate-rightCol">
+                <CalculateNutrients
+                  onAdd={onAdd}
+                  onRemove={onRemove}
+                  mealItems={mealItems}
+                  countMealItems={mealItems.length}
+                />
+              </div>
             </div>
-          </div>
-
-
           </Col>
         </Row>
-           <Footer></Footer>
+        <Footer></Footer>
       </Container>
-
-
-        
     );
 
 }
