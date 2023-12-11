@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { deleteusers } from "../services/AdminService";
+import { deleteusers, fetchuser } from "../services/AdminService";
 import { NavForLogin } from "../component/navforlogin";
 
 function CrudDelete(props) {
@@ -15,8 +15,9 @@ function CrudDelete(props) {
 		function () {
 			async function deleteCrudById() {
 				try {
-					const response = await deleteusers(n);
+					const response = await fetchuser(n);
 					setCrud(response.user);
+					console.log( crud );
 				} catch (error) {
 					console.log("error", error);
 				}
@@ -40,20 +41,16 @@ function CrudDelete(props) {
       <NavForLogin></NavForLogin>
 
       <div className="container">
-        <h2>{crud.n}</h2>
+       
 
         <p>
-          <b>Phone</b>: <a href={`tel:+${crud.phone}`}> {crud.phone} </a>
-        </p>
-
-        <p>
-          <b>Email</b>: {crud.email}
+          <b>This will delete the selected User from database</b>
         </p>
         <div className="btn-group">
           <button onClick={handleDelete} className="btn btn-danger">
             Delete
           </button>
-          <Link to="/cruds" className="btn btn-secondary">
+          <Link to="/admincrud" className="btn btn-secondary">
             Cancel{" "}
           </Link>
         </div>

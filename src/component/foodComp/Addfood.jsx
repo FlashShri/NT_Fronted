@@ -61,8 +61,7 @@ const [ formData , setFormData] = useState({
                 <Form.Control
                   type="text"
                   placeholder="name od food item"
-                  
-                  name='name'
+                  name="name"
                   onChange={handleChange}
                   required
                   className="rounded-start"
@@ -78,45 +77,37 @@ const [ formData , setFormData] = useState({
                 <Form.Control
                   type="text"
                   placeholder="serving in grams"
-                
                   name="serving"
                   onChange={handleChange}
                   required
                   className="rounded-start"
                 />
-                
               </InputGroup>
             </Form.Group>
-
 
             <Form.Group controlId="formprotien" className="mb-3">
               <InputGroup>
                 <Form.Control
                   type="text"
                   placeholder="protiens in mg"
-               
-                  name="protien"
-
+                  name="protein"
                   onChange={handleChange}
                   required
                   className="rounded-start"
                 />
-    
               </InputGroup>
             </Form.Group>
 
-             <Form.Group controlId="formcal" className="mb-3">
+            <Form.Group controlId="formcal" className="mb-3">
               <InputGroup>
                 <Form.Control
                   type="text"
                   placeholder="calories"
-                  
-                  name='calories'
- onChange={handleChange}
+                  name="calories"
+                  onChange={handleChange}
                   required
                   className="rounded-start"
                 />
-    
               </InputGroup>
             </Form.Group>
 
@@ -125,44 +116,35 @@ const [ formData , setFormData] = useState({
                 <Form.Control
                   type="text"
                   placeholder="sugar"
-           
-                  name='sugar'
- onChange={handleChange}
+                  name="sugar"
+                  onChange={handleChange}
                   required
                   className="rounded-start"
                 />
-    
               </InputGroup>
             </Form.Group>
 
-
-                <Form.Group controlId="formcat" className="mb-3">
+            <Form.Group controlId="formcat" className="mb-3">
               <InputGroup>
                 <Form.Control
                   type="text"
                   placeholder="category"
-                 
                   name="category"
- onChange={handleChange}
+                  onChange={handleChange}
                   required
                   className="rounded-start"
                 />
-    
               </InputGroup>
             </Form.Group>
 
-
-
-
-
-
-
-
-            <Button variant="primary" type="button" className="btn w-100" onClick={submitForm}>
+            <Button
+              variant="primary"
+              type="button"
+              className="btn w-100"
+              onClick={submitForm}
+            >
               Add Food to List
             </Button>
-
-            
           </Form>
         </Col>
       </Row>

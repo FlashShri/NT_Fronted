@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchuser, updateusers } from "../services/AdminService";
+import { deleteusers, fetchuser, updateusers } from "../services/AdminService";
 import { NavForLogin } from "../component/navforlogin";
 
 function CrudEdit(props) {
@@ -38,6 +38,7 @@ function CrudEdit(props) {
 		async function updateCrud() {
 			try {
 				 await updateusers(crud , n);
+
 				 navigate(`/admincrud`);
 			} catch (error) {
 				console.log(error);
@@ -51,7 +52,7 @@ function CrudEdit(props) {
 	}
 
 	function handleCancel() {
-		navigate(`/cruds/${crud._id}`);
+		navigate(`/admincrud`);
 	}
 
 	return (

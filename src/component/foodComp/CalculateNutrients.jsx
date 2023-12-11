@@ -7,7 +7,7 @@ export default function CalculateNutrients({
   onRemove
 }){
     const totalProtein = Math.round(
-    mealItems.reduce((acc, item) => acc + item.qty * item.protein, 0)
+    mealItems.reduce((a, item) => a + item.qty * item.protein, 0)
   )
   const totalServing = Math.round(
     mealItems.reduce((a, item) => a + item.qty * item.serving, 0)
@@ -27,32 +27,13 @@ export default function CalculateNutrients({
         <h2>{countMealItems ? <p>{countMealItems}</p> : ""}</h2>
       </div>
       <p>
-        <small>Target: 2720 Cal</small>
+
       </p>
       <br></br>
 
       {mealItems.length === 0 ? (
         <div>
-          {/* Target row with boxes for cal, prot, sugar */}
-          {/* <div className="total-food-nutrients">
-            <div
-              className="total-food-nutrients totals-col-2"
-              style={{ background: "#1d2127" }}
-            >
-              <p style={{ background: "#1d2127" }}>
-                <b>Target</b>
-              </p>
-            </div>
-            <p>
-              Protein <b>{targProtein}g</b>
-            </p>
-            <p>
-              Calories <b>{targCalories}c</b>
-            </p>
-            <p>
-              Sugar <b>{targSugar}g</b>
-            </p>
-          </div> */}
+         
         </div>
       ) : (
         <div>
@@ -139,49 +120,7 @@ export default function CalculateNutrients({
 
           <hr style={{ marginBottom: "6px" }} />
 
-          {/* Target row with boxes for cal, prot, sugar
-          <div className="total-food-nutrients">
-            <div
-              className="total-food-nutrients totals-col-2"
-              style={{ background: "#1d2127" }}
-            >
-              <p style={{ background: "#1d2127" }}>
-                <b>Target</b>
-              </p>
-            </div>
-            <p>
-              Protein <b>{targProtein}g</b>
-            </p>
-            <p>
-              Calories <b>{targCalories !== 0 ? "0 cal" : targCalories}</b>
-              
-            </p>
-            <p>
-              Sugar <b>{targSugar}g</b>
-            </p>
-          </div>
-
-          {/* Remaining row with boxes for cal, prot, sugar */}
-          {/* <div className="total-food-nutrients">
-            <div
-              className="total-food-nutrients totals-col-2"
-              style={{ background: "#1d2127" }}
-            >
-              <p style={{ background: "#1d2127" }}>
-                <b>Remaining</b>
-              </p>
-            </div>
-            <p>
-              Protein <b>{remainingProtein < 0 ? 0 : remainingProtein}g</b>
-            </p>
-            <p>
-              Calories <b>{remainingCalories < 0 ? "0 cal" : remainingCalories}</b>
-            </p>
-            <p>
-              Sugar <b>{remainingSugar < 0 ? 0 : remainingSugar}g</b>
-            </p>
-          </div> */} 
-
+          
           {/* Extra box info */}
           {/* <span>Extra daily meals total info</span> */}
           <div className="total-food-nutrients" style={{ marginTop: "22px" }}>

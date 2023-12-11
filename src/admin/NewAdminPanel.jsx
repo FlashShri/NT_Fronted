@@ -27,12 +27,8 @@ function CrudTable() {
       <div className="container">
         <div>
           <h2>
-            CRUD - Table View
-            <p>
-              <Link to="/cruds/new" className="btn btn-primary float-right">
-                Create CRUD
-              </Link>
-            </p>
+            Admin Panel Crud Methods
+         
           </h2>
           <hr />
         </div>
@@ -55,9 +51,10 @@ function CrudTable() {
                   return (
                     <tr key={1}>
                       <td>
-                        <Link to={`/cruds/${crud._id}`} className="link-line">
-                          {crud.name}
-                        </Link>
+                        <p>
+                          {" "}
+                          <b>{crud.name}</b>
+                        </p>
                       </td>
                       <td>{crud.phone}</td>
                       <td>{crud.email}</td>

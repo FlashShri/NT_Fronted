@@ -13,11 +13,7 @@ export default function FoodList({ food_data, mealItems, onAdd, onRemove }) {
   return (
       <>
       <br></br>
-      <div>
-        <button>Breakfast</button>
-        <button>Lunch</button>
-        <button>Dinner</button>
-      </div>
+    
       <br></br>
     
         <div className="foodList">

@@ -67,14 +67,7 @@ const navigate =   useNavigate();
       <Row className="justify-content-center">
         <Col md={6}>
           <Form className="p-4 shadow-lg bg-white rounded">
-            <div className="text-center mb-4">
-              <img
-                // src={logo}
-                alt="Your Logo"
-                className="img-fluid"
-                style={{ maxHeight: "100px" }}
-              />
-            </div>
+            
             <h1 className="mb-4 text-center">Sign Up</h1>
 
             <Form.Group controlId="formUsername" className="mb-3 input-box">

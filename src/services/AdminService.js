@@ -41,7 +41,7 @@ export async function deleteusers(name) {
 export async function updateusers(newdata, name) {
   try {
     console.log( newdata );
-    const res = await axios.get(`${BASE_URL}/admin/user/${name}`, newdata);
+    const res = await axios.put(`${BASE_URL}/admin/user/${name}`, newdata);
     console.log(res.data);
     return res.data;
   } catch (error) {
