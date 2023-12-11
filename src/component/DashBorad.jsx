@@ -89,7 +89,7 @@ export function DashBorad() {
       </Row>
       <Row className="mt-4">
         <Col xs={12} md={8} lg={6}>
-          <h3>
+          <h3 className="foodhead">
             Your Food Items <Badge bg="secondary">add them to list</Badge>
           </h3>
           <div className="row">

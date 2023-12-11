@@ -23,7 +23,7 @@ export default function CalculateNutrients({
 
         <div className="mealItems">
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <h2>Food Diary items &nbsp;</h2>
+        <h2 className="foodhead">Your Food items &nbsp;</h2>
         <h2>{countMealItems ? <p>{countMealItems}</p> : ""}</h2>
       </div>
       <p>

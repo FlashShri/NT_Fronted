@@ -50,21 +50,22 @@ const [ formData , setFormData] = useState({
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-center">
+    <Container className="mt-5 foodinput">
+      <Row className="justify-content-center  ">
         <Col md={6}>
-          <Form className="p-4 shadow-lg bg-white rounded">
+          <Form className="p-4 shadow-lg foodinput rounded">
             <h1 className="mb-4 text-center">Add your Item</h1>
 
             <Form.Group controlId="formUsername" className="mb-3">
               <InputGroup>
                 <Form.Control
+                e
                   type="text"
                   placeholder="name od food item"
                   name="name"
                   onChange={handleChange}
                   required
-                  className="rounded-start"
+                  className="rounded-start  if"
                 />
                 {/* <InputGroup.Text className="rounded-end">
                   <i className="bi bi-person" />

@@ -146,6 +146,7 @@
   /* margin-bottom: 1px;; */
 }
 .mealItems {
+  color: white ;
   border: 3px solid black;
   padding: 10px;
   border-radius: 6px;
@@ -159,4 +160,16 @@
 
 .log{
   background-image: 
+}
+
+.foodhead{
+  color : ghostwhite;
+}
+
+.foodinput{
+  background-color: darkgray;
+}
+
+.if{
+  background-color: lightgray;
 }
